@@ -2,7 +2,7 @@ extends ../layout
 
 block content
     H1 Create Article
-    form.col-xs-12.col-sm-12.col-md-12.col-lg-12(action='/create_article', method='POST')
+    form(action='/articles/create_article', method='POST')
 
         .formgroup.col-md-6
             label.small.mb-1.mt-3 Title:
