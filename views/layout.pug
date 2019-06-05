@@ -1,4 +1,5 @@
 doctype html
+html(lang='en')
 html
   head
     title= title
@@ -9,6 +10,9 @@ html
         a.navbar-brand(href='#') The Mockingbird
         .collapse.navbar-collapse
           ul.navbar-nav.mr-auto
+            if title
+              li.nav-item
+                a.navbar-text(href='#') #{title}
             li.nav-item
               a.nav-link(href="#") New Article
 
