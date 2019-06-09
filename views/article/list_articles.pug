@@ -4,16 +4,16 @@ block content
     h1 Articles
     table.table
         thead
-            tr
-                th(scope="col") Article Title
-                th(scope="col") Article Image
-                th(scope="col") Article Contents
+            tr.row
+                th(scope="col").col-md-3 Article Title
+                th(scope="col").col-md-3 Article Image
+                th(scope="col").col-md-6 Article Contents
         tbody
             for article in articles
-                tr
-                    td
+                tr.row
+                    td.col-md-3
                         span #{article.title}
-                    td
-                        img(src=article.image_url alt=article.title)
-                    td
+                    td.col-md-3
+                        img.img_fluid(src=article.image_url alt=article.title style="max-width: 100%; height: auto;")
+                    td.col-md-6
                         span #{article.contents}
