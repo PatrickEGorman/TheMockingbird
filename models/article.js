@@ -7,6 +7,10 @@ const articleSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now },
 });
 
+articleSchema.statics.getAll = async function() {
+    return this.getAll();
+};
+
 const Article = mongoose.model('Article', articleSchema);
 
 exports.Article = Article;
