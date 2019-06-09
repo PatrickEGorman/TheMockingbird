@@ -3,7 +3,8 @@ extends ../layout
 block content
     H1 Create Article
     form(action='/articles/create_article', method='POST')
-
+        if error
+            div #{error}
         .formgroup.col-md-6
             label.small.mb-1.mt-3 Title:
             input(placeholder='Enter article title', required=true, name='title', type='text', value='').form-control
