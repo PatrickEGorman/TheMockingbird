@@ -12,7 +12,7 @@ block content
             for article in articles
                 tr.row
                     td.col-md-3
-                        span #{article.title}
+                        a(href='article/'+article.id) #{article.title}
                     td.col-md-3
                         img.img_fluid(src=article.image_url alt=article.title style="max-width: 100%; height: auto;")
                     td.col-md-6

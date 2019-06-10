@@ -9,8 +9,9 @@ exports.create_article = function(req, res, next) {
         return res.render('article/create_article', { title: 'Create Article',
             error:'Article title length must be under 100 characters'});
     }
+    let newArticle;
     const createArticleWithMessages = async () => {
-        const newArticle = new Article.Article({
+        newArticle = new Article.Article({
             title : req.body.title,
             image_url : req.body.image_url,
             contents : req.body.contents
@@ -19,7 +20,7 @@ exports.create_article = function(req, res, next) {
         await newArticle.save();
     };
     createArticleWithMessages().then(() =>{
-        return res.redirect('/');
+        return res.redirect('/articles/article/'+newArticle.id);
     });
 };
 
@@ -32,5 +33,12 @@ exports.view_articles = function (req, res, next) {
             }
         }
         return res.render('article/list_articles', {title: 'View Articles', articles: articles})
+    })
+};
+
+exports.article = function(req, res, next){
+    Article.Article.findById(req.params.article_id, function(err, article) {
+        if (err) throw err;
+        return res.render('article/view_article', {title: article.title, article: article})
     })
 };
