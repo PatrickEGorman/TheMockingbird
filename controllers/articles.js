@@ -1,4 +1,4 @@
-import {article} from '../models/article'
+import {Article} from '../models/article'
 
 export let article_responses = {
     create_article_page : function (req, res, next) {
@@ -14,7 +14,7 @@ export let article_responses = {
         }
         let newArticle;
         const createArticleWithMessages = async () => {
-            newArticle = new Article.Article({
+            newArticle = new Article({
                 title: req.body.title,
                 image_url: req.body.image_url,
                 contents: req.body.contents
@@ -28,7 +28,7 @@ export let article_responses = {
     },
 
     view_articles : function (req, res, next) {
-        Article.Article.find({}, function (err, articles) {
+        Article.find({}, function (err, articles) {
             if (err) throw err;
             for (let i = 0; i < articles.length; i++) {
                 if (articles[i].contents.length > 250) {
@@ -40,7 +40,7 @@ export let article_responses = {
     },
 
     article : function (req, res, next) {
-        Article.Article.findById(req.params.article_id, function (err, article) {
+        Article.findById(req.params.article_id, function (err, article) {
             if (err) throw err;
             return res.render('article/view_article', {title: article.title, article: article})
         })
