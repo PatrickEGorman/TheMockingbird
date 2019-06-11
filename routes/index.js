@@ -1,8 +1,8 @@
-var express = require('express');
+import express from 'express'
 var router = express.Router();
-var home = require("../controllers/home");
+import home from '../controllers/home'
 
 /* GET home page. */
-router.get('/', home.home);
+router.get('/', home);
 
-module.exports = router;
+export let indexRouter = router;

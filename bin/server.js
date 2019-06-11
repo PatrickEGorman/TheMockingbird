@@ -3,10 +3,10 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+import {app} from '../app'
 var debug = require('debug')('themockingbird:server');
-var http = require('http');
-let modelsIndex = require('../models/index');
+import http from 'http';
+import {connectDb} from '../models/index';
 
 /**
  * Get port from environment and store in Express.
@@ -24,7 +24,7 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-modelsIndex.connectDb().then(async () => {
+connectDb().then(async () => {
   server.listen(port);
   server.on('error', onError);
   server.on('listening', onListening);

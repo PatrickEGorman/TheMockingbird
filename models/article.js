@@ -1,4 +1,4 @@
-let mongoose = require('mongoose');
+import mongoose from 'mongoose'
 import "regenerator-runtime"
 
 const articleSchema = new mongoose.Schema({
@@ -14,4 +14,4 @@ articleSchema.statics.getAll = async function() {
 
 const Article = mongoose.model('Article', articleSchema);
 
-exports.Article = Article;
+export {Article};

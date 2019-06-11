@@ -1,13 +1,11 @@
-let mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
-let Article = require('./article');
+import {Article} from './article'
 
-const connectDb = () => {
+function connectDb()  {
     return mongoose.connect(process.env.DATABASE_URL);
-};
+}
 
 const models = { Article };
 
-exports.connectDb = connectDb ;
-
-exports.models = models;
+export {connectDb, models} ;
