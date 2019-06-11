@@ -1,0 +1,10 @@
+
+.article_list_image {
+    max-width: 100%;
+    max-height: 200px;
+    height: auto;
+}
+
+.display_article_contents {
+    white-space: pre-wrap;
+}

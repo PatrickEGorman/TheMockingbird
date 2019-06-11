@@ -13,5 +13,5 @@ block content
             input(placeholder='Enter image url', required=false, name='image_url', type='url', value='').form-control
         .formgroup.col-md-12
             label.small.mb-1.mt-3 Contents:
-            input(placeholder='Enter article contents', required=true, name='contents', type='text', value='').form-control
+            textarea(placeholder='Enter article contents', required=true, rows=15, name='contents', type='text', value='').form-control
         button.mt-3.btn.btn-primary(type='submit') Submit Article
