@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "start-dev": "nodemon ./bin/www"
+    "build": "rm -rf dist && webpack --mode development",
+    "start": "node ./dist/server.js",
+    "build_and_start": "npm run build && npm start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -14,9 +15,16 @@
     "mogoose": "^3.1.8",
     "mongoose": "^5.5.12",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "regenerator-runtime": "^0.13.2"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "nodemon": "^1.19.1",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.3",
+    "webpack-node-externals": "^1.7.2"
   }
 }

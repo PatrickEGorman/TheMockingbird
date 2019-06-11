@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+import "regenerator-runtime"
 
 const articleSchema = new mongoose.Schema({
     title: String,
