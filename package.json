@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "rm -rf dist && webpack --mode development",
-    "start": "node ./dist/server.js",
-    "build_and_start": "npm run build && npm start"
+    "build": "rm -rf dist && webpack --mode development --watch",
+    "start": "nodemon ./dist/server.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
