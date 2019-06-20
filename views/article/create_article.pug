@@ -2,16 +2,7 @@ extends ../layout
 
 block content
     H1 Create Article
-    form(action='/articles/create_article', method='POST')
-        if error
-            div #{error}
-        .formgroup.col-md-6
-            label.small.mb-1.mt-3 Title:
-            input(placeholder='Enter article title', required=true, name='title', type='text', value='').form-control
-        .formgroup.col-md-6
-            label.small.mb-1.mt-3 Image Url:
-            input(placeholder='Enter image url', required=false, name='image_url', type='url', value='').form-control
-        .formgroup.col-md-12
-            label.small.mb-1.mt-3 Contents:
-            textarea(placeholder='Enter article contents', required=true, rows=15, name='contents', type='text', value='').form-control
-        button.mt-3.btn.btn-primary(type='submit') Submit Article
+    p Error: #{ error }
+    div(id="create_article_form")
+
+    script(src="../../create_article.js")
