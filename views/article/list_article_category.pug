@@ -1,14 +1,13 @@
 extends ../layout
 
 block content
-    h1 Articles
+    h1 #{ title }
     table.table
         thead
             tr.row
                 th(scope="col").col-md-2 Title
                 th(scope="col").col-md-2 Author
-                th(scope="col").col-md-1 Category
-                th(scope="col").col-md-1 Date
+                th(scope="col").col-md-2 Date
                 th(scope="col").col-md-3 Image
                 th(scope="col").col-md-3 Contents
         tbody
@@ -18,9 +17,7 @@ block content
                         a(href='view_article/'+article.id) #{article.title}
                     td.col-md-2
                         span #{article.author}
-                    td.col-md-1
-                        span #{article.category}
-                    td.col-md-1
+                    td.col-md-2
                         include ./article_date.pug
                         +article_date(article.date)
                     td.col-md-3

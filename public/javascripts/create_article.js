@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import $ from 'jquery'
 
 import categories from './categories'
 
@@ -15,7 +16,7 @@ class CreateArticleForm extends React.Component {
             category_choices.push(<option key={index} value={value}>{value}</option>)
         }
         return (
-            <form action={"create_article"} method={"POST"}>
+            <form action={"create_article"} method={"POST"} encType="multipart/form-data">
                 <input type={'hidden'} name={"_csrf"} value={this.csrfToken}/>
                 <div className={'formgroup col-md-6'}>
                     <label className={'small mb-1 mt-3'}> Title </label>
@@ -23,7 +24,7 @@ class CreateArticleForm extends React.Component {
                            className={'form-control'}/>
                 </div>
                 <div className={'formgroup col-md-6'}>
-                    <label className={'small mb-1 mt-3'}> Title </label>
+                    <label className={'small mb-1 mt-3'}> Author </label>
                     <input placeholder={'Enter article author'} name='author' type='text'
                            className={'form-control'}/>
                 </div>
@@ -34,12 +35,13 @@ class CreateArticleForm extends React.Component {
                         {category_choices}
                     </select>
                 </div>
-                <div className={'formgroup col-md-6'}>
-                    <label className={'small mb-1 mt-3'}> Image Url </label>
-                    <input placeholder={'Enter Image Url'} name='image_url' type='url'
-                           className={'form-control'}/>
+                <br/>
+                <div className={'custom-file col-md-12'}>
+                    <label htmlFor={'image'}> Upload an Image </label>
+                    <input placeholder={'Upload Image'} id='image' name='image' type='file'
+                           className={'form-control-file'}/>
                 </div>
-                <div className={'formgroup col-md-6'}>
+                <div className={'formgroup col-md-12'}>
                     <label className={'small mb-1 mt-3'}> Image Caption </label>
                     <input placeholder={'Enter Image Caption'} name='image_caption' type='text'
                            className={'form-control'}/>

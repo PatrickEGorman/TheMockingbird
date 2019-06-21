@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-    img.article_page_image(src=article.image_url)
+    img.article_page_image(src=article.image_url alt=article.image_caption)
     br
     p #{article.image_caption}
     h1 #{article.title}
