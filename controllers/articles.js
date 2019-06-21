@@ -2,7 +2,7 @@ import {Article} from '../models/article'
 
 export let article_responses = {
     create_article_page : function (req, res, next) {
-        return res.render('article/create_article', {title: 'Create Article'});
+        return res.render('article/create_article', {title: 'Create Article', csrfToken: req.csrfToken()});
     },
 
    create_article : function (req, res, next) {

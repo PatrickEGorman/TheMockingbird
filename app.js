@@ -3,6 +3,7 @@ import express from 'express'
 import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
+import favicon from 'serve-favicon'
 
 import {articlesRouter} from "./routes/article";
 import {indexRouter} from "./routes/index";
@@ -18,9 +19,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../dist/frontend')));
 
+app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '/frontend')));
+app.use(favicon(path.join(__dirname, '../public/images/favicon.ico')));
 
 app.use('/', indexRouter);
 app.use('/articles', articlesRouter);

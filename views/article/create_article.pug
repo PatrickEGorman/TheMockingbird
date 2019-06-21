@@ -2,7 +2,9 @@ extends ../layout
 
 block content
     H1 Create Article
-    p Error: #{ error }
+    if error
+        p Error: #{ error }
+    meta(name="csrf-token" content=csrfToken)
     div(id="create_article_form")
 
     script(src="../../create_article.js")
