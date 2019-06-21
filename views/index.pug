@@ -3,4 +3,32 @@ extends layout
 block content
   .text-center
     img(src="/images/banner-large.png")
-  a(href="/articles/create_article") Create Article
+  hr
+  .col-md-8
+    .row
+      p
+        | Welcome to The Mockingbird! The Mockingbird is a fake news site where the content is entirely user generated.
+        | Feel free and browse through articles and categories or
+        |
+        a(href="/articles/create_article") create an article here.
+    hr
+    .row
+      for article in articles
+        .col-md-6
+          p #{article.category} :
+          .row
+            .col-md-8
+              .row
+                h3
+                  a.article_title_link(href="/articles/view_article/" + article.id) #{article.title}
+              .row
+                p #{article.contents}
+            .col-md-4
+              img.img_fluid.article_list_image(src=article.image_url alt=article.image_caption)
+          .row
+            .col-md-4
+              span #{article.author}
+            .col-md-4
+              include ./article/article_date.pug
+              +article_date(article.date)
+          hr

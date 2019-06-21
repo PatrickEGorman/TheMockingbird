@@ -12,11 +12,12 @@ block content
                             a.article_title_link(href="/articles/view_article/"+article.id) #{article.title}
                      .row
                             p #{article.contents}
-                     .row
-                        .col-md-6
-                            span #{article.author}
-                        .col-md-6
-                            include ./article_date.pug
-                            +article_date(article.date)
                  .col-md-4
                     img.img_fluid.article_list_image(src=article.image_url alt=article.image_caption)
+             .row
+                 .col-md-4
+                    span #{article.author}
+                 .col-md-4
+                    include ./article_date.pug
+                    +article_date(article.date)
+             hr

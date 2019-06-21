@@ -46,7 +46,7 @@ export let article_responses = {
                 }
             }
             return res.render('article/list_articles', {title: 'View Articles', articles: articles})
-        })
+        }).sort('-date');
     },
 
     view_article_category : function (req, res, next) {
@@ -59,7 +59,7 @@ export let article_responses = {
                 }
             }
             return res.render('article/list_article_category', {title: list_category, articles: articles})
-        })
+        }).sort('-date');
     },
 
     article : function (req, res, next) {
