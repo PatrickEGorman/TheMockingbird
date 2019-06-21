@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build-server": "webpack --config webpack.server.config.js --mode development --watch",
-    "build-frontend": "webpack --config webpack.frontend.config.js --mode development --watch",
+    "build-server-dev": "webpack --config webpack.server.config.js --mode development --watch",
+    "build-frontend-dev": "webpack --config webpack.frontend.config.js --mode development --watch",
     "start": "nodemon ./dist/server.js"
   },
   "dependencies": {
