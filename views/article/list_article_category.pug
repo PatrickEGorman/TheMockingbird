@@ -2,25 +2,21 @@ extends ../layout
 
 block content
     h1 #{ title }
-    table.table
-        thead
-            tr.row
-                th(scope="col").col-md-2 Title
-                th(scope="col").col-md-2 Author
-                th(scope="col").col-md-2 Date
-                th(scope="col").col-md-3 Image
-                th(scope="col").col-md-3 Contents
-        tbody
-            for article in articles
-                tr.row
-                    td.col-md-2
-                        a(href='view_article/'+article.id) #{article.title}
-                    td.col-md-2
-                        span #{article.author}
-                    td.col-md-2
-                        include ./article_date.pug
-                        +article_date(article.date)
-                    td.col-md-3
-                        img.img_fluid.article_list_image(src=article.image_url alt=article.image_caption)
-                    td.col-md-3
-                        span #{article.contents}
+    .col-md-8
+        for article in articles
+             br
+             .row
+                 .col-md-8
+                     .row
+                         h3
+                            a.article_title_link(href="/articles/view_article/"+article.id) #{article.title}
+                     .row
+                            p #{article.contents}
+                     .row
+                        .col-md-6
+                            span #{article.author}
+                        .col-md-6
+                            include ./article_date.pug
+                            +article_date(article.date)
+                 .col-md-4
+                    img.img_fluid.article_list_image(src=article.image_url alt=article.image_caption)

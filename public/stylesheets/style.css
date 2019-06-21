@@ -14,3 +14,7 @@
 .display_article_contents {
     white-space: pre-wrap;
 }
+
+.article_title_link {
+    color: black;
+}
