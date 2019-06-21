@@ -5,15 +5,21 @@ block content
     table.table
         thead
             tr.row
-                th(scope="col").col-md-3 Article Title
-                th(scope="col").col-md-3 Article Image
-                th(scope="col").col-md-6 Article Contents
+                th(scope="col").col-md-2 Title
+                th(scope="col").col-md-2 Author
+                th(scope="col").col-md-2 Category
+                th(scope="col").col-md-3 Image
+                th(scope="col").col-md-3 Contents
         tbody
             for article in articles
                 tr.row
-                    td.col-md-3
+                    td.col-md-2
                         a(href='article/'+article.id) #{article.title}
+                    td.col-md-2
+                        span #{article.author}
+                    td.col-md-2
+                        span #{article.category}
                     td.col-md-3
                         img.img_fluid.article_list_image(src=article.image_url alt=article.title)
-                    td.col-md-6
+                    td.col-md-3
                         span #{article.contents}

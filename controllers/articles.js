@@ -16,7 +16,10 @@ export let article_responses = {
         const createArticleWithMessages = async () => {
             newArticle = new Article({
                 title: req.body.title,
+                author: req.body.author,
+                category: req.body.category,
                 image_url: req.body.image_url,
+                image_caption: req.body.image_caption,
                 contents: req.body.contents
             });
 
