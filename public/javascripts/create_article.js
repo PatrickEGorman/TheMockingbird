@@ -1,12 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import categories from './categories'
+
 class CreateArticleForm extends React.Component {
     constructor(props){
         super(props);
         this.csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     }
     render(){
+        let category_choices = [];
+
+        for(const [index, value] of categories.entries()){
+            category_choices.push(<option key={index} value={value}>{value}</option>)
+        }
         return (
             <form action={"create_article"} method={"POST"}>
                 <input type={'hidden'} name={"_csrf"} value={this.csrfToken}/>
@@ -24,15 +31,7 @@ class CreateArticleForm extends React.Component {
                     <label className={'small mb-1 mt-3'}>Category</label>
                     <br />
                     <select name={"category"}>
-                       <option value={"world"}>World</option>
-                       <option value={"us"}>U.S.</option>
-                       <option value={"politics"}>Politics</option>
-                       <option value={"science"}>Science</option>
-                       <option value={"technology"}>Technology</option>
-                       <option value={"sports"}>Sports</option>
-                       <option value={"entertainment"}>Entertainment</option>
-                       <option value={"local"}>Local</option>
-                       <option value={"health"}>Health</option>
+                        {category_choices}
                     </select>
                 </div>
                 <div className={'formgroup col-md-6'}>

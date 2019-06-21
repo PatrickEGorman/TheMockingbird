@@ -16,7 +16,7 @@ export let article_responses = {
         const createArticleWithMessages = async () => {
             newArticle = new Article({
                 title: req.body.title,
-                author: req.body.author,
+                author: req.body.author ? req.body.author : "Anonymous",
                 category: req.body.category,
                 image_url: req.body.image_url,
                 image_caption: req.body.image_caption,
@@ -26,7 +26,7 @@ export let article_responses = {
             await newArticle.save();
         };
         createArticleWithMessages().then(() => {
-            return res.redirect('/articles/article/' + newArticle.id);
+            return res.redirect('/articles/view_article/' + newArticle.id);
         });
     },
 

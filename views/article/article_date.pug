@@ -1,0 +1,15 @@
+mixin article_date(date)
+    if date.getMinutes() > 9
+        if date.getHours() < 12
+            p #{date.toDateString()} #{date.getHours()}:#{date.getMinutes()} AM
+        else if date.getHours() === 12
+            p #{date.toDateString()} #{date.getHours()}:#{date.getMinutes()} PM
+        else
+            p #{date.toDateString()} #{date.getHours() - 12}:#{date.getMinutes()} PM
+    else
+        if date.getHours() < 12
+            p #{date.toDateString()} #{date.getHours()}:#{'0' + date.getMinutes()} AM
+        else if date.getHours() === 12
+            p #{date.toDateString()} #{date.getHours()}:#{'0' + date.getMinutes()} PM
+        else
+            p #{date.toDateString()} #{date.getHours() - 12}:#{'0' + date.getMinutes()} PM

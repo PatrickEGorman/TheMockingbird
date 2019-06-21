@@ -12,6 +12,7 @@
     "csurf": "^1.10.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-fileupload": "^1.1.5",
     "http-errors": "~1.6.3",
     "mogoose": "^3.1.8",
     "mongoose": "^5.5.12",

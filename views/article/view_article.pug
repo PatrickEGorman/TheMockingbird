@@ -6,6 +6,7 @@ block content
     p #{article.image_caption}
     h1 #{article.title}
     p By #{article.author} | #{article.category}
-    p #{article.date}
+    include ./article_date.pug
+    +article_date(article.date)
     br
     p.display_article_contents #{article.contents}
