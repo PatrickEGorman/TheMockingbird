@@ -2,9 +2,22 @@ extends ../layout
 
 block content
     H1 Create Article
-    if error
-        p Error: #{ error }
+    if errors
+        for error in errors
+            p Error: #{ error }
     meta(name="csrf-token" content=csrfToken)
+    meta(name="form-data" content=formData)
     div(id="create_article_form")
-
+    if formData
+        script.
+            let formData = {
+                title: "#{formData.title}",
+                author: "#{formData.author}",
+                category: "#{formData.category}",
+                image_caption: "#{formData.image_caption}",
+                contents: "#{formData.contents}",
+            };
+    else
+        script.
+            let formData = {};
     script(src="../../create_article.js")

@@ -6,19 +6,36 @@ export let article_responses = {
     },
 
    create_article : function (req, res, next) {
+        let errors = [];
         if (req.body.title.length > 100) {
-            return res.render('article/create_article', {
-                title: 'Create Article',
-                error: 'Article title length must be under 100 characters'
-            });
+            errors.push('Article title length must be under 100 characters');
         }
         let newArticle;
+        let publicPath ="";
+        try {
+            let imageFile = req.files.image;
+            let format = imageFile.name.split('.')[imageFile.name.split('.').length - 1];
+            if(format in ['gif', 'jpg', 'jpeg', 'png', 'svg', 'bmp']) {
+                publicPath = '/uploads/' + Date.now() + '.' + format;
+                let uploadPath = __dirname + '/../public' + publicPath;
+                imageFile.mv(uploadPath);
+            }
+            else {
+                errors.push("."+format+" is not a valid image format.");
+            }
+        }
+        catch(TypeError){
+            console.log("No image given");
+        }
 
-        let imageFile = req.files.image;
-        let format = imageFile.name.split('.')[imageFile.name.split('.').length-1];
-        let publicPath = '/uploads/'+Date.now()+'.'+format;
-        let uploadPath = __dirname + '/../public'+publicPath;
-        imageFile.mv(uploadPath);
+        if(errors){
+            return res.render('article/create_article', {
+                title: 'Create Article',
+                csrfToken: req.csrfToken(),
+                formData:req.body,
+                errors: errors
+            });
+        }
 
         const createArticleWithMessages = async () => {
             newArticle = new Article({
@@ -35,6 +52,18 @@ export let article_responses = {
         createArticleWithMessages().then(() => {
             return res.redirect('/articles/view_article/' + newArticle.id);
         });
+    },
+
+    get_article_list : function (req, res, next) {
+        Article.find({}, function (err, articles) {
+            if (err) throw err;
+            for (let i = 0; i < articles.length; i++) {
+                if (articles[i].contents.length > 250) {
+                    articles[i].contents = articles[i].contents.slice(0, 249) + "...";
+                }
+            }
+            return res.json(articles);
+        }).sort('-date').limit(Number(req.params.num_articles));
     },
 
     view_articles : function (req, res, next) {

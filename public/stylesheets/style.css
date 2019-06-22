@@ -1,4 +1,8 @@
 
+body {
+    background-color: #fff4b6;
+}
+
 .article_list_image {
     max-width: 100%;
     max-height: 200px;

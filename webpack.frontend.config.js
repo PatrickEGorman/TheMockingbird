@@ -4,7 +4,8 @@ const nodeExternals = require('webpack-node-externals')
 module.exports = {
     entry: {
         create_article: './public/javascripts/create_article.js',
-        categories: './public/javascripts/categories.js'
+        categories: './public/javascripts/categories.js',
+        index: './public/javascripts/index.js'
     },
     output: {
         path: path.join(__dirname, 'dist/frontend'),
