@@ -6,7 +6,10 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+
   body
+    div(id="fb-root")
+    script(async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=623909081453509&autoLogAppEvents=1")
     header
       nav.navbar.navbar-expand.navbar-light(style="background-color: #F2F79C;")
         a.navbar-brand(href='/')
@@ -17,11 +20,35 @@ html
               a.navbar-text(href='/') Home
             li.nav-item
               a.nav-link(href="/articles/create_article") Create Article
-            li.nav-item
-              a.nav-link(href="/articles/view_articles") View All Categories
           div(id="category_list").collapse.navbar-collapse
+          div(class="fb-login-button" data-width="" data-size="small" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
     .container.main.mt-4
-         block content
+      block content
+    footer.bg-dark.text-light.page-footer(class='bg-dark text-light pt-4 pl-4 pr-4')
+      .container_fluid.text-center.text-md-left.py-4.px-3
+        .row
+          .col-md-1
+          .col-md-4
+            img(src="/images/banner-small.png")
+            hr
+            | Welcome to The Mockingbird! The Mockingbird is a fake news site where the content is entirely user generated.
+            | Feel free and browse through articles and categories or
+            |
+            a.text-info(href="/articles/create_article") create an article here.
+          .col-md-2
+          .col-md-4
+            br
+            ul.list-unstyled
+              li
+                a.text-info(href="/articles/view_articles") View All Categories
+              li
+                a.text-info(href="/articles/create_article") Create Article
+              li
+                a.text-info(href="/privacy_policy") Privacy Policy
+            div(class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
+          .col-md-1
+
+
 
 script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous")
 scipt(src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous")

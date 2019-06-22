@@ -25,9 +25,8 @@ class CreateArticleForm extends React.Component {
                            className={'form-control'} defaultValue={formData.title}/>
                 </div>
                 <div className={'formgroup col-md-6'}>
-                    <label className={'small mb-1 mt-3'}> Author </label>
-                    <input placeholder={'Enter article author'} name='author' type='text'
-                           className={'form-control'} defaultValue={formData.author}/>
+                    <input placeholder={'Enter article author'} name='author' type='hidden'
+                           className={'form-control'} value={userName}/>
                 </div>
                 <div className={'formgroup col-md-3'}>
                     <label className={'small mb-1 mt-3'}>Category</label>
@@ -59,8 +58,17 @@ class CreateArticleForm extends React.Component {
         }
 }
 
-$('#create_article_form').submit(function(event){
 
-});
+let userName = "";
 
-ReactDOM.render(<CreateArticleForm />, document.getElementById('create_article_form'));
+window.fbAsyncInit = function() {
+    FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {
+            ReactDOM.render(<CreateArticleForm/>, document.getElementById('create_article_form'));
+        }
+    });
+    FB.api('/me', {accessToken: response.authResponse.accesssToken}, function (response) {
+        console.log(JSON.stringify(response));
+        userName = JSON.stringify(response)["name"];
+    });
+}

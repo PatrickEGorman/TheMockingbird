@@ -4,6 +4,38 @@ import $ from 'jquery'
 import DateDisplay from './util/dateDisplay'
 
 class Article extends React.Component {
+    renderImageContents(){
+        let dotDotDot = '';
+        if(this.props.contents.length>150){
+            dotDotDot = '...';
+        }
+        if(this.props.image_url) {
+            return (
+                <div className={"row"}>
+                    <div className={'col-md-8'}>
+                        <p>{this.props.contents.substring(0, 150)}
+                            {dotDotDot}
+                        </p>
+                    </div>
+                    <div className={'col-md-4'}>
+                        <img alt={this.props.image_caption} className={'article_list_image'}
+                             src={this.props.image_url}/>
+                    </div>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className={"row"}>
+                    <div className={'col'}>
+                        <p>{this.props.contents.substring(0, 150)}
+                            {dotDotDot}
+                        </p>
+                    </div>
+                </div>
+            )
+        }
+    }
     render(){
         let dotDotDot = '';
         if(this.props.contents.length>150){
@@ -18,19 +50,10 @@ class Article extends React.Component {
                 </div>
                 <div className={"row"}>
                     <div className={'col'}>
-                        <h3>{this.props.title}</h3>
+                        <h3><a className={'text-info'} href={'/articles/view_article/'+this.props.id}>{this.props.title}</a></h3>
                     </div>
                 </div>
-                <div className={"row"}>
-                    <div className={'col-md-8'}>
-                        <p>{this.props.contents.substring(0,150)}
-                            {dotDotDot}
-                        </p>
-                    </div>
-                    <div className={'col-md-4'}>
-                        <img className={'article_list_image'} src={this.props.image_url}/>
-                    </div>
-                </div>
+                {this.renderImageContents()}
                 <div className={'row'}>
                     <div className={'col-md-4'}>
                         <p>{this.props.author}</p>
@@ -51,7 +74,8 @@ class ArticleList extends React.Component{
             <div className="row">
                 { this.props.articles.map((article, index) => (
                     <Article title={article.title} author={article.author} category={article.category}
-                             image_url={article.image_url} date={article.date} contents={article.contents} key={index}/>
+                             image_url={article.image_url} date={article.date} contents={article.contents}
+                             id={article._id} image_caption={article.image_caption} key={index}/>
                 ))}
             </div>
         )
