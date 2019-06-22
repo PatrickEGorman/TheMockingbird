@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import $ from 'jquery'
+import DateDisplay from './util/dateDisplay'
 
 class Article extends React.Component {
     render(){
@@ -11,10 +12,14 @@ class Article extends React.Component {
         return (
             <div className={'col-md-6'}>
                 <div className={"row"}>
-                    <p>{this.props.category} :</p>
+                    <div className={'col'}>
+                        <p>{this.props.category} :</p>
+                    </div>
                 </div>
                 <div className={"row"}>
-                    <h3>{this.props.title}</h3>
+                    <div className={'col'}>
+                        <h3>{this.props.title}</h3>
+                    </div>
                 </div>
                 <div className={"row"}>
                     <div className={'col-md-8'}>
@@ -31,7 +36,7 @@ class Article extends React.Component {
                         <p>{this.props.author}</p>
                     </div>
                     <div className={'col-md-4'}>
-                        <p>{this.props.date}</p>
+                        <DateDisplay date={this.props.date}/>
                     </div>
                 </div>
                 <hr/>
@@ -46,7 +51,7 @@ class ArticleList extends React.Component{
             <div className="row">
                 { this.props.articles.map((article, index) => (
                     <Article title={article.title} author={article.author} category={article.category}
-                    image_url={article.image_url} date={article.date} contents={article.contents} key={index}/>
+                             image_url={article.image_url} date={article.date} contents={article.contents} key={index}/>
                 ))}
             </div>
         )

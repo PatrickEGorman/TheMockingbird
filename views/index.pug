@@ -4,14 +4,13 @@ block content
   .text-center
     img(src="/images/banner-large.png")
   hr
-  .col-md-8
-    .row
-      p
-        | Welcome to The Mockingbird! The Mockingbird is a fake news site where the content is entirely user generated.
-        | Feel free and browse through articles and categories or
-        |
-        a(href="/articles/create_article") create an article here.
+  .col
+    p
+      | Welcome to The Mockingbird! The Mockingbird is a fake news site where the content is entirely user generated.
+      | Feel free and browse through articles and categories or
+      |
+      a(href="/articles/create_article") create an article here.
     hr
-    div(id='articleContainer')
+    div(id='articleContainer' class='col-md-8')
 
   script(src="../index.js")

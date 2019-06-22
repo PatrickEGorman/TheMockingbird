@@ -3,8 +3,8 @@ const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 module.exports = {
     entry: {
-        create_article: './public/javascripts/create_article.js',
-        categories: './public/javascripts/categories.js',
+        create_article: './public/javascripts/article/create_article.js',
+        categories: './public/javascripts/article/categories.js',
         index: './public/javascripts/index.js'
     },
     output: {
