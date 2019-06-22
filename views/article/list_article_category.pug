@@ -6,14 +6,22 @@ block content
         for article in articles
              br
              .row
-                 .col-md-8
+                 if article.image_url
                      .row
                          h3
                             a.article_title_link(href="/articles/view_article/"+article.id) #{article.title}
+
                      .row
+                         .col-md-8
                             p #{article.contents}
-                 .col-md-4
-                    img.img_fluid.article_list_image(src=article.image_url alt=article.image_caption)
+                         .col-md-4
+                            img.img_fluid.article_list_image(src=article.image_url alt=article.image_caption)
+                 else
+                     .row
+                         h3
+                             a.article_title_link(href="/articles/view_article/" + article.id) #{article.title}
+                     .row
+                         p #{article.contents}
              .row
                  .col-md-4
                     span #{article.author}

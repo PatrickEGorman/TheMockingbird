@@ -22,17 +22,17 @@ class CreateArticleForm extends React.Component {
                 <div className={'formgroup col-md-6'}>
                     <label className={'small mb-1 mt-3'}> Title </label>
                     <input placeholder={'Enter article title'} required name='title' type='text'
-                           className={'form-control'} value={formData.title}/>
+                           className={'form-control'} defaultValue={formData.title}/>
                 </div>
                 <div className={'formgroup col-md-6'}>
                     <label className={'small mb-1 mt-3'}> Author </label>
                     <input placeholder={'Enter article author'} name='author' type='text'
-                           className={'form-control'} value={formData.author}/>
+                           className={'form-control'} defaultValue={formData.author}/>
                 </div>
                 <div className={'formgroup col-md-3'}>
                     <label className={'small mb-1 mt-3'}>Category</label>
                     <br />
-                    <select name={"category"} value={formData.category}>
+                    <select name={"category"} defaultValue={formData.category}>
                         {category_choices}
                     </select>
                 </div>
@@ -45,12 +45,12 @@ class CreateArticleForm extends React.Component {
                 <div className={'formgroup col-md-12'}>
                     <label className={'small mb-1 mt-3'}> Image Caption </label>
                     <input placeholder={'Enter Image Caption'} name='image_caption' type='text'
-                           className={'form-control'} value={formData.image_caption}/>
+                           className={'form-control'} defaultValue={formData.image_caption}/>
                 </div>
                 <div className={'formgroup col-md-12'}>
                     <label className={'small mb-1 mt-3'}> Article Contents </label>
                     <textarea placeholder={'Enter Article Contents'} required name='contents' type='text' rows={15}
-                           className={'form-control'} value={formData.contents}/>
+                           className={'form-control'} defaultValue={formData.contents}/>
                 </div>
                 <br/>
                 <input className={'btn btn-primary'} type={"submit"}/>

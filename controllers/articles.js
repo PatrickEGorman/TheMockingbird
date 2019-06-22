@@ -1,3 +1,5 @@
+import fs from 'fs'
+import filesize from 'filesize'
 import {Article} from '../models/article'
 
 export let article_responses = {
@@ -12,23 +14,30 @@ export let article_responses = {
         }
         let newArticle;
         let publicPath ="";
-        try {
+        if(req.files) {
             let imageFile = req.files.image;
+            console.log(req.files);
+            console.log(imageFile);
+            // let stats = fs.sync(imageFile.path());
+            // const fileSize = filesize(stats.size);
             let format = imageFile.name.split('.')[imageFile.name.split('.').length - 1];
-            if(format in ['gif', 'jpg', 'jpeg', 'png', 'svg', 'bmp']) {
+            if(!format in ['gif', 'jpg', 'jpeg', 'png', 'svg', 'bmp']) {
+                errors.push("."+format+" is not a valid image format.");
+            }
+            else if(imageFile.size > 20000000) {
+                errors.push("Uploaded file is "+(imageFile.size/1000000).toFixed(0)+"mb which is over the 20mb limit");
+            }
+            else {
                 publicPath = '/uploads/' + Date.now() + '.' + format;
                 let uploadPath = __dirname + '/../public' + publicPath;
                 imageFile.mv(uploadPath);
             }
-            else {
-                errors.push("."+format+" is not a valid image format.");
-            }
         }
-        catch(TypeError){
+        else{
             console.log("No image given");
         }
 
-        if(errors){
+        if(errors.length>0){
             return res.render('article/create_article', {
                 title: 'Create Article',
                 csrfToken: req.csrfToken(),

@@ -4,38 +4,58 @@ import $ from 'jquery'
 
 class Article extends React.Component {
     render(){
+        let dotDotDot = '';
+        if(this.props.contents.length>150){
+            dotDotDot = '...';
+        }
         return (
             <div className={'col-md-6'}>
-                <div className={'row'}>
+                <div className={"row"}>
+                    <p>{this.props.category} :</p>
+                </div>
+                <div className={"row"}>
+                    <h3>{this.props.title}</h3>
+                </div>
+                <div className={"row"}>
                     <div className={'col-md-8'}>
-                        <div className={"row"}>
-                            <p>props.category :</p>
-                        </div>
-                        <div className={"row"}>
-                            <h3>props.title</h3>
-                        </div>
-                        <div className={"row"}>
-                            <p>props.contents :</p>
-                        </div>
+                        <p>{this.props.contents.substring(0,150)}
+                            {dotDotDot}
+                        </p>
                     </div>
                     <div className={'col-md-4'}>
-                        <img source={props.url}/>
+                        <img className={'article_list_image'} src={this.props.image_url}/>
                     </div>
                 </div>
                 <div className={'row'}>
                     <div className={'col-md-4'}>
-                        <p>props.author</p>
+                        <p>{this.props.author}</p>
                     </div>
                     <div className={'col-md-4'}>
-                        <p>props.date</p>
+                        <p>{this.props.date}</p>
                     </div>
                 </div>
+                <hr/>
+            </div>
+        )
+    }
+}
+
+class ArticleList extends React.Component{
+    render(){
+        return(
+            <div className="row">
+                { this.props.articles.map((article, index) => (
+                    <Article title={article.title} author={article.author} category={article.category}
+                    image_url={article.image_url} date={article.date} contents={article.contents} key={index}/>
+                ))}
             </div>
         )
     }
 }
 
 
-class ArticleList extends React.Component{
-
-}
+$.get('/articles/article_list/10',
+    (data)=>{
+        ReactDOM.render(<ArticleList articles={data}/>,document.getElementById('articleContainer'))
+    }, 'json'
+);
