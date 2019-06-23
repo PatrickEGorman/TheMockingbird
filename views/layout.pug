@@ -20,45 +20,46 @@ html
         document.dispatchEvent(facebookLoadEvent);
       };
     script(async defer src="https://connect.facebook.net/en_US/sdk.js")
-    header
-      nav.navbar.navbar-expand.navbar-light(style="background-color: #F2F79C;")
-        a.navbar-brand(href='/')
-          img(src="/images/banner-small.png")
-        .collapse.navbar-collapse
-          ul.navbar-nav.mr-auto
-            li.nav-item
-              a.navbar-text(href='/') Home
-            li.nav-item
-              a.nav-link(href="/articles/create_article") Create Article
-          div(id="category_list").collapse.navbar-collapse
-          div.fb-login-button(data-width="" data-size="medium" data-onlogin="location.reload()"
-            data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
-    .container.main.mt-4
-      block content
-    footer.bg-dark.text-light.page-footer(class='bg-dark text-light pt-4 pl-4 pr-4')
-      .container_fluid.text-center.text-md-left.py-4.px-3
-        .row
-          .col-md-1
-          .col-md-4
+    .page
+      header
+        nav.navbar.navbar-expand.navbar-light(style="background-color: #F2F79C;")
+          a.navbar-brand(href='/')
             img(src="/images/banner-small.png")
-            hr
-            | Welcome to The Mockingbird! The Mockingbird is a fake news site where the content is entirely user generated.
-            | Feel free and browse through articles and categories or
-            |
-            a.text-info(href="/articles/create_article") create an article here.
-          .col-md-2
-          .col-md-4
-            br
-            ul.list-unstyled
-              li
-                a.text-info(href="/articles/view_articles") View All Categories
-              li
-                a.text-info(href="/articles/create_article") Create Article
-              li
-                a.text-info(href="/privacy_policy") Privacy Policy
-            div(class="fb-login-button" data-onlogin="location.reload()" data-width="" data-size="large"
+          .collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item
+                a.navbar-text(href='/') Home
+              li.nav-item
+                a.nav-link(href="/articles/create_article") Create Article
+            div(id="category_list").collapse.navbar-collapse
+            div.fb-login-button(data-width="" data-size="medium" data-onlogin="location.reload()"
               data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
-          .col-md-1
+      .container.main.mt-4.content
+        block content
+      footer.bg-dark.text-light.page-footer(class='bg-dark text-light pt-4 pl-4 pr-4')
+        .container_fluid.text-center.text-md-left.py-4.px-3
+          .row
+            .col-md-1
+            .col-md-4
+              img(src="/images/banner-small.png")
+              hr
+              | Welcome to The Mockingbird! The Mockingbird is a fake news site where the content is entirely user generated.
+              | Feel free and browse through articles and categories or
+              |
+              a.text-info(href="/articles/create_article") create an article here.
+            .col-md-2
+            .col-md-4
+              br
+              ul.list-unstyled
+                li
+                  a.text-info(href="/articles/view_articles") View All Categories
+                li
+                  a.text-info(href="/articles/create_article") Create Article
+                li
+                  a.text-info(href="/privacy_policy") Privacy Policy
+              div(class="fb-login-button" data-onlogin="location.reload()" data-width="" data-size="large"
+                data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
+            .col-md-1
 
 script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous")
 scipt(src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous")
