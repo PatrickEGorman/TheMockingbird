@@ -1,7 +1,14 @@
 extends ../layout
 
 block content
+
+    meta(property="og:type" content="website")
+    meta(property="og:title" content=article.title)
+    meta(property="og:description" content=article.content)
+
     if article.image_url
+        meta(property="og:image" content=article.image_url)
+
         img.article_page_image(src=article.image_url alt=article.image_caption)
         br
         p #{article.image_caption}
@@ -9,5 +16,7 @@ block content
     p By #{article.author} | #{article.category}
     include ./article_date.pug
     +article_date(article.date)
+    div(class="fb-share-button"
+        data-layout="button")
     br
     p.display_article_contents #{article.contents}
