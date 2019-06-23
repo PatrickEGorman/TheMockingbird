@@ -18,15 +18,12 @@ class CreateArticleForm extends React.Component {
         return (
             <form action={"create_article"} id={'create_article_form'} method={"POST"} encType="multipart/form-data">
                 <div className={'col-md-6'} id={'errors'}> </div>
-                <input type={'hidden'} name={"_csrf"} value={this.csrfToken}/>
+                <input type={'hidden'} name={"_csrf"} required value={this.csrfToken}/>
+                <input name='author' type='hidden' required value={this.props.author}/>
                 <div className={'formgroup col-md-6'}>
                     <label className={'small mb-1 mt-3'}> Title </label>
                     <input placeholder={'Enter article title'} required name='title' type='text'
                            className={'form-control'} defaultValue={formData.title}/>
-                </div>
-                <div className={'formgroup col-md-6'}>
-                    <input placeholder={'Enter article author'} name='author' type='hidden'
-                           className={'form-control'} value={userName}/>
                 </div>
                 <div className={'formgroup col-md-3'}>
                     <label className={'small mb-1 mt-3'}>Category</label>
@@ -59,16 +56,28 @@ class CreateArticleForm extends React.Component {
 }
 
 
-let userName = "";
+class LoggedOutDisplay extends React.Component{
+    render(){
+        return(
+            <div>
+                You must be signed in with Facebook in order to create an article.
+            </div>
+        )
+    }
+}
 
-window.fbAsyncInit = function() {
+
+function renderContent() {
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-            ReactDOM.render(<CreateArticleForm/>, document.getElementById('create_article_form'));
+            FB.api('/me', {accessToken: response.authResponse.accesssToken}, function (response) {
+                ReactDOM.render(<CreateArticleForm author={response.name}/>, document.getElementById('create_article_form'));
+            });
+        }
+        else {
+            ReactDOM.render(<LoggedOutDisplay/>, document.getElementById('create_article_form'))
         }
     });
-    FB.api('/me', {accessToken: response.authResponse.accesssToken}, function (response) {
-        console.log(JSON.stringify(response));
-        userName = JSON.stringify(response)["name"];
-    });
 }
+
+document.addEventListener('facebookLoaded', function (e) {renderContent()});

@@ -8,8 +8,18 @@ html
     link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
 
   body
-    div(id="fb-root")
-    script(async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=623909081453509&autoLogAppEvents=1")
+    script.
+      let facebookLoadEvent = new Event("facebookLoaded");
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: '623909081453509',
+          autoLogAppEvents: true,
+          xfbml: true,
+          version: 'v3.3'
+        });
+        document.dispatchEvent(facebookLoadEvent);
+      };
+    script(async defer src="https://connect.facebook.net/en_US/sdk.js")
     header
       nav.navbar.navbar-expand.navbar-light(style="background-color: #F2F79C;")
         a.navbar-brand(href='/')
@@ -21,7 +31,8 @@ html
             li.nav-item
               a.nav-link(href="/articles/create_article") Create Article
           div(id="category_list").collapse.navbar-collapse
-          div(class="fb-login-button" data-width="" data-size="small" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
+          div.fb-login-button(data-width="" data-size="medium" data-onlogin="location.reload()"
+            data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
     .container.main.mt-4
       block content
     footer.bg-dark.text-light.page-footer(class='bg-dark text-light pt-4 pl-4 pr-4')
@@ -45,10 +56,9 @@ html
                 a.text-info(href="/articles/create_article") Create Article
               li
                 a.text-info(href="/privacy_policy") Privacy Policy
-            div(class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
+            div(class="fb-login-button" data-onlogin="location.reload()" data-width="" data-size="large"
+              data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false")
           .col-md-1
-
-
 
 script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous")
 scipt(src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous")
