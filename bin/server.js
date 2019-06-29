@@ -5,8 +5,11 @@
 
 import {app} from '../app'
 var debug = require('debug')('themockingbird:server');
-import http from 'http';
+import https from 'https';
 import {connectDb} from '../models/index';
+import fs from "fs";
+import path from 'path'
+
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +22,11 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = https.createServer({
+      key: fs.readFileSync(path.join(__dirname, '../server.key')),
+      cert: fs.readFileSync(path.join(__dirname, '../server.cert'))
+    },
+    app);
 
 /**
  * Listen on provided port, on all network interfaces.

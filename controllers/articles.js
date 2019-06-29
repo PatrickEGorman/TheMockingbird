@@ -1,5 +1,3 @@
-import fs from 'fs'
-import filesize from 'filesize'
 import {Article} from '../models/article'
 
 export let article_responses = {
@@ -16,10 +14,6 @@ export let article_responses = {
         let publicPath ="";
         if(req.files) {
             let imageFile = req.files.image;
-            console.log(req.files);
-            console.log(imageFile);
-            // let stats = fs.sync(imageFile.path());
-            // const fileSize = filesize(stats.size);
             let format = imageFile.name.split('.')[imageFile.name.split('.').length - 1];
             if(!format in ['gif', 'jpg', 'jpeg', 'png', 'svg', 'bmp']) {
                 errors.push("."+format+" is not a valid image format.");
