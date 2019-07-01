@@ -1,4 +1,5 @@
 import {Article} from '../models/article'
+import {getSignedRequest} from "../image/upload";
 
 export let article_responses = {
     create_article_page : function (req, res, next) {
@@ -22,9 +23,7 @@ export let article_responses = {
                 errors.push("Uploaded file is "+(imageFile.size/1000000).toFixed(0)+"mb which is over the 20mb limit");
             }
             else {
-                publicPath = '/uploads/' + Date.now() + '.' + format;
-                let uploadPath = __dirname + '/../public' + publicPath;
-                imageFile.mv(uploadPath);
+                getSignedRequest(imageFile);
             }
         }
         else{

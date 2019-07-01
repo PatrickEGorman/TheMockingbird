@@ -1,3 +1,4 @@
+import aws from 'aws'
 import createError from 'http-errors'
 import express from 'express'
 import path from 'path'
@@ -29,6 +30,9 @@ app.use(favicon(path.join(__dirname, '../public/images/favicon.ico')));
 app.use('/', indexRouter);
 app.use('/articles', articlesRouter);
 app.use('/users', usersRouter);
+
+const S3_BUCKET = process.env.S3_BUCKET;
+aws.config.region = 'us-east-1';
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

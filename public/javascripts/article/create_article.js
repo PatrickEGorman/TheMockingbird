@@ -33,16 +33,18 @@ class CreateArticleForm extends React.Component {
                     </select>
                 </div>
                 <br/>
-                <div className={'custom-file col-md-12'}>
-                    <label htmlFor={'image'}> Upload an Image </label>
-                    <input placeholder={'Upload Image'} id='image' name='image' type='file'
-                           className={'form-control-file'}/>
-                </div>
-                <div className={'formgroup col-md-12'}>
-                    <label className={'small mb-1 mt-3'}> Image Caption </label>
-                    <input placeholder={'Enter Image Caption'} name='image_caption' type='text'
-                           className={'form-control'} defaultValue={formData.image_caption}/>
-                </div>
+
+                <!--<div className={'custom-file col-md-12'}>
+                        <label htmlFor={'image'}> Upload an Image </label>
+                        <input placeholder={'Upload Image'} id='image' name='image' type='file'
+                               className={'form-control-file'}/>
+                    </div>
+                    <div className={'formgroup col-md-12'}>
+                        <label className={'small mb-1 mt-3'}> Image Caption </label>
+                        <input placeholder={'Enter Image Caption'} name='image_caption' type='text'
+                               className={'form-control'} defaultValue={formData.image_caption}/>
+                    </div>
+                ! -->
                 <div className={'formgroup col-md-12'}>
                     <label className={'small mb-1 mt-3'}> Article Contents </label>
                     <textarea placeholder={'Enter Article Contents'} required name='contents' type='text' rows={15}
